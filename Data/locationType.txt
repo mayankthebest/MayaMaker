@@ -1,0 +1,6 @@
+Unit
+Room
+Bed
+Facility
+Building
+Waiting Room
