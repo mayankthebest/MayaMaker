@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using MayaMaker.Services.Managers;
+using MayaMaker.Services.Writers;
 using Microsoft.AspNetCore.Mvc;
+using NHapi.Base.Model;
 
 namespace MayaMaker.Services.Controllers
 {
@@ -11,36 +11,29 @@ namespace MayaMaker.Services.Controllers
     [ApiController]
     public class MessageMakerController : ControllerBase
     {
-        // GET: api/MessageMaker
+        readonly IMessageManager _messageManager = null;
+        readonly IMessageWriter _messageWriter = null;
+
+        public MessageMakerController(IMessageManager messageManager, IMessageWriter messageWriter)
+        {
+            _messageManager = messageManager;
+            _messageWriter = messageWriter;
+        }
+
+        [HttpGet(Name = "GetAll")]
+        public async Task<List<IMessage>> GetAll()
+        {
+            var messages = await _messageManager.GetAllAdtMessages();
+            _messageWriter.WriteAllMessages(messages);
+            return messages;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<List<IMessage>> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/MessageMaker/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/MessageMaker
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/MessageMaker/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var messages = await _messageManager.GetAdtMessagesForOneEncounter();
+            _messageWriter.WriteAllMessages(messages);
+            return messages;
         }
     }
 }

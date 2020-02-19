@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MayaMaker.Services.Managers;
+using MayaMaker.Services.MessageFactory;
 using MayaMaker.Services.Models;
+using MayaMaker.Services.Writers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +31,9 @@ namespace MayaMaker.Services
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MayaMakerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MayaMakerContext")));
+            services.AddTransient<IMessageFactory, AdtMessageFactory>();
+            services.AddTransient<IMessageManager, MessageManager>();
+            services.AddTransient<IMessageWriter, MessageWriter>();
             services.AddControllers();
         }
 

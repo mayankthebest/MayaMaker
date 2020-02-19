@@ -1,11 +1,10 @@
-﻿using System;
+﻿using NHapi.Base.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MayaMaker.Services.Writers
 {
     public interface IMessageWriter
     {
+        void WriteAllMessages(List<IMessage> messages);
     }
 }

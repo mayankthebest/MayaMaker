@@ -1,11 +1,14 @@
-﻿using System;
+﻿using NHapi.Base.Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MayaMaker.Services.Writers
 {
-    public class MessageWriter
+    public class MessageWriter : IMessageWriter
     {
+        public void WriteAllMessages(List<IMessage> messages)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

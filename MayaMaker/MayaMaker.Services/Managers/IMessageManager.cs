@@ -1,11 +1,13 @@
-﻿using System;
+﻿using NHapi.Base.Model;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MayaMaker.Services.Managers
 {
     public interface IMessageManager
     {
+        Task<List<IMessage>> GetAdtMessagesForOneEncounter();
+
+        Task<List<IMessage>> GetAllAdtMessages();
     }
 }

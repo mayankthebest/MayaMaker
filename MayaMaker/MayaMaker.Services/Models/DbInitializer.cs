@@ -151,6 +151,48 @@ namespace MayaMaker.Services.Models
 
                 context.SaveChanges();
             }
+
+            if(!context.Scenarios.Any())
+            {
+                var scenarios = new List<Scenario>();
+                scenarios.Add(new Scenario
+                {
+                    Name = "Stanard Life cycle",
+                    Description = "Standard life cycle of an outpatient in a hospital",
+                    MessageTypes = "A01,A04,A03"
+                });
+                scenarios.Add(new Scenario
+                {
+                    Name = "Outpatient to inpatient",
+                    Description = "Outpatient to inpatient",
+                    MessageTypes = "A01,A06,A02,A08,A03"
+                });
+                scenarios.Add(new Scenario
+                {
+                    Name = "Patient discharge cancelled and restarted",
+                    Description = "Patient discharge cancelled and restarted",
+                    MessageTypes = "A01,A02,A08,A03,A13,A03"
+                });
+                scenarios.Add(new Scenario
+                {
+                    Name = "Patient Admit cancelled",
+                    Description = "Patient Admit cancelled",
+                    MessageTypes = "A01,A011,A01,A03"
+                });
+                scenarios.Add(new Scenario
+                {
+                    Name = "Pending discharge scenario",
+                    Description = "Pending discharge scenario",
+                    MessageTypes = "A01,A16,A15,A02,A08,A03"
+                });
+
+                foreach (Scenario s in scenarios)
+                {
+                    context.Scenarios.Add(s);
+                }
+
+                context.SaveChanges();
+            }
         }
     }
 }
