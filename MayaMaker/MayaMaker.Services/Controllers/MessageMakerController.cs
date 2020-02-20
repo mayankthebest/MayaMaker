@@ -20,7 +20,7 @@ namespace MayaMaker.Services.Controllers
             _messageWriter = messageWriter;
         }
 
-        [HttpGet(Name = "GetAll")]
+        [HttpGet("GetAll")]
         public async Task<List<string>> GetAll()
         {
             var messages = await _messageManager.GetAllAdtMessages();

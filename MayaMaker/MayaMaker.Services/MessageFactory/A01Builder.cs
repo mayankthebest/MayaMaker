@@ -1,5 +1,5 @@
 ﻿using NHapi.Base.Model;
-using System;
+using NHapi.Model.V23.Message;
 using System.Threading.Tasks;
 
 namespace MayaMaker.Services.MessageFactory
@@ -8,7 +8,9 @@ namespace MayaMaker.Services.MessageFactory
     {
         public async Task<IMessage> BuildMessage(IMessage messageToBuild)
         {
-            throw new NotImplementedException();
+            var a01Message = (messageToBuild as ADT_A01);
+            var nk1 = a01Message.AddNK1();
+            return a01Message;
         }
     }
 }

@@ -1,0 +1,13 @@
+Baptist
+Buddhist
+Catholic
+Episcopalian
+Hindu
+Jewish
+Mormon
+Muslim
+None
+Other
+Presbyterian
+Protestant (Other)
+Unknown

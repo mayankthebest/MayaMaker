@@ -18,6 +18,7 @@ namespace MayaMaker.Services.Models
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Encounter> Encounters { get; set; }
         public DbSet<Scenario> Scenarios { get; set; }
+        public DbSet<PatientKin> PatientKins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace MayaMaker.Services.Models
             modelBuilder.Entity<Doctor>().ToTable("Doctor");
             modelBuilder.Entity<Encounter>().ToTable("Encounter");
             modelBuilder.Entity<Scenario>().ToTable("Scenario");
+            modelBuilder.Entity<PatientKin>().ToTable("PatientKin");
             base.OnModelCreating(modelBuilder);
         }
     }

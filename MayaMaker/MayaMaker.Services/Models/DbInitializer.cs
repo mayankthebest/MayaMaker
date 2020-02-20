@@ -14,7 +14,18 @@ namespace MayaMaker.Services.Models
             if (!context.Patients.Any())
             {
                 var patients = new List<Patient>();
+                var nks = new List<PatientKin>();
                 var allPatientRawData = File.ReadAllLines("SampleData\\patients.csv");
+                var femaleNames = File.ReadAllLines("SampleData\\FemaleGivenName.txt");
+                var maleNames = File.ReadAllLines("SampleData\\MaleGivenName.txt");
+                var lastNames = File.ReadAllLines("SampleData\\FamilyName.txt");
+                var phoneNumbers = File.ReadAllLines("SampleData\\PhoneNumber.txt");
+                var streetNumbers = File.ReadAllLines("SampleData\\Street Number.txt");
+                var streetNames = File.ReadAllLines("SampleData\\Street.txt");
+                var cityNames = File.ReadAllLines("SampleData\\City.txt");
+                var stateNames = File.ReadAllLines("SampleData\\State.txt");
+                var countryNames = File.ReadAllLines("SampleData\\Country.txt");
+                var zipCodes = File.ReadAllLines("SampleData\\ZipCode.txt");
                 for (int i = 1; i < allPatientRawData.Length; i++)
                 {
                     var rawData = allPatientRawData[i].Split(',');
@@ -43,12 +54,50 @@ namespace MayaMaker.Services.Models
                         County = rawData[19],
                         Zip = rawData[20]
                     };
+                    Random rand = new Random();
+                    int numberOfKins = rand.Next(0, 5);
+                    if(numberOfKins > 0)
+                    {
+                        for (int j = 0; j < numberOfKins; j++)
+                        {
+                            PatientKin kin = new PatientKin();
+                            kin.Patient = patient;
+                            kin.LastName = lastNames[rand.Next(0, lastNames.Length - 1)];
+                            kin.Role = "Next of Kin";
+                            kin.Street = $"{streetNumbers[rand.Next(0, streetNumbers.Length - 1)]}, {streetNames[rand.Next(0, streetNames.Length - 1)]}";
+                            kin.City = cityNames[rand.Next(0, cityNames.Length - 1)];
+                            kin.State = stateNames[rand.Next(0, stateNames.Length - 1)];
+                            kin.Country = countryNames[rand.Next(0, countryNames.Length - 1)];
+                            kin.Zip = zipCodes[rand.Next(0, zipCodes.Length - 1)];
+                            kin.HomePhoneNumber = phoneNumbers[rand.Next(0, phoneNumbers.Length - 1)];
+                            kin.BusinessPhoneNumber = phoneNumbers[rand.Next(0, phoneNumbers.Length - 1)];
+
+                            if (j % 2==0)
+                            {
+                                kin.FirstName = femaleNames[rand.Next(0, femaleNames.Length - 1)];
+                                kin.Relationship = "Sister";
+                            }
+                            else
+                            {
+                                kin.FirstName = maleNames[rand.Next(0, maleNames.Length - 1)];
+                                kin.Relationship = "Brother";
+                            }
+
+                            nks.Add(kin);
+                        }
+                        
+                    }
+
                     patients.Add(patient);
                 }
 
                 foreach (Patient p in patients)
                 {
                     context.Patients.Add(p);
+                }
+                foreach (PatientKin patientKin in nks)
+                {
+                    context.PatientKins.Add(patientKin);
                 }
 
                 context.SaveChanges();

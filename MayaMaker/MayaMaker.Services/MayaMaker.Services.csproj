@@ -28,7 +28,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="SampleData\City.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\Country.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SampleData\encounters.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\FamilyName.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\FemaleGivenName.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\MaleGivenName.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="SampleData\organizations.csv">
@@ -37,7 +52,25 @@
     <None Update="SampleData\patients.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="SampleData\PhoneNumber.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SampleData\providers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\Religion.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\State.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\Street Number.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\Street.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SampleData\ZipCode.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
