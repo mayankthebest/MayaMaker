@@ -1,6 +1,5 @@
 ﻿using MayaMaker.Services.MessageFactory;
 using MayaMaker.Services.Models;
-using NHapi.Base.Model;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,12 +17,12 @@ namespace MayaMaker.Services.Managers
             _messageFactory = messageFactory;
         }
 
-        public async Task<List<IMessage>> GetAdtMessagesForOneEncounter()
+        public async Task<List<string>> GetAdtMessagesForOneEncounter()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<List<IMessage>> GetAllAdtMessages()
+        public async Task<List<string>> GetAllAdtMessages()
         {
             throw new NotImplementedException();
         }
