@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using MayaMaker.Services.Managers;
 using MayaMaker.Services.Writers;
 using Microsoft.AspNetCore.Mvc;
-using NHapi.Base.Model;
 
 namespace MayaMaker.Services.Controllers
 {

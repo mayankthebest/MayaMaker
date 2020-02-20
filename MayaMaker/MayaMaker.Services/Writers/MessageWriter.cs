@@ -7,7 +7,7 @@ namespace MayaMaker.Services.Writers
     {
         public void WriteAllMessages(List<string> messages)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
