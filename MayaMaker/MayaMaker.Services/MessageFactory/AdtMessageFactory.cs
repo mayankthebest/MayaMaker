@@ -11,7 +11,7 @@ namespace MayaMaker.Services.MessageFactory
         {
             var message = base.CreateMessageWithHeaderValues(messageType, messageTime);
             var messageBuilder = base.GetMessageBuilder(messageType);
-            return await messageBuilder.BuildMessage(message);
+            return await messageBuilder.BuildMessage(message, messageTime, patient, encounter);
         }
     }
 }
