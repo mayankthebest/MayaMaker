@@ -7,6 +7,6 @@ namespace MayaMaker.Services.MessageFactory
 {
     public interface IBuildMessage
     {
-        Task<IMessage> BuildMessage(IMessage messageToBuild, DateTime messageTime, Patient patient, Encounter encounter);
+        Task<IMessage> BuildMessage(DateTime messageTime, Patient patient, Encounter encounter);
     }
 }

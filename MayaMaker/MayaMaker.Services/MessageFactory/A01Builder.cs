@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace MayaMaker.Services.MessageFactory
 {
-    internal class A01Builder : IBuildMessage
+    internal class A01Builder : BaseMessageBuilder, IBuildMessage
     {
         private ADT_A01 a01Message = null;
 
-        public async Task<IMessage> BuildMessage(IMessage messageToBuild, DateTime messageTime, Patient patient, Encounter encounter)
+        public async Task<IMessage> BuildMessage(DateTime messageTime, Patient patient, Encounter encounter)
         {
+            var messageToBuild = base.CreateMessageWithHeaderValues(MessageType.A01, messageTime);
             a01Message = (messageToBuild as ADT_A01);
             CreateEvnSegment(messageTime);
             CreatePidSegment();

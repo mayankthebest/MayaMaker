@@ -7,7 +7,7 @@ namespace MayaMaker.Services.MessageFactory
 {
     internal class A27Builder : IBuildMessage
     {
-        public Task<IMessage> BuildMessage(IMessage messageToBuild, DateTime messageTime, Patient patient, Encounter encounter)
+        public Task<IMessage> BuildMessage(DateTime messageTime, Patient patient, Encounter encounter)
         {
             throw new System.NotImplementedException();
         }
