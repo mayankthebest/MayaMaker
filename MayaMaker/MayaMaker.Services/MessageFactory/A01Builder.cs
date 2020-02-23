@@ -13,7 +13,7 @@ namespace MayaMaker.Services.MessageFactory
 
         public async Task<IMessage> BuildMessage(DateTime messageTime, Patient patient, Encounter encounter)
         {
-            var messageToBuild = base.CreateMessageWithHeaderValues(MessageType.A01, messageTime);
+            var messageToBuild = CreateMessageWithHeaderValues(MessageType.A01, messageTime);
             a01Message = (messageToBuild as ADT_A01);
             CreateEvnSegment(messageTime);
             CreatePidSegment();
