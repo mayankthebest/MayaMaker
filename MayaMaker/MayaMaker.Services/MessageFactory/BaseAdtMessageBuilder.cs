@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace MayaMaker.Services.MessageFactory
 {
-    public class BaseMessageBuilder
+    public class BaseAdtMessageBuilder
     {
         public string FieldSeparator { get; set; }
         public string EncodingCharacters { get; set; }
@@ -20,12 +20,12 @@ namespace MayaMaker.Services.MessageFactory
         public string Version { get; set; }
         public string ProcessingID { get; set; }
 
-        public BaseMessageBuilder()
+        public BaseAdtMessageBuilder()
         {
             FieldSeparator = "|";
             EncodingCharacters = "^~\\&";
             SendingApplicationName = "MayaMaker";
-            SendingFacilityName = "SourceHospital";
+            SendingFacilityName = "MayaHospital";
             ReceivingApplicationName = "DCC";
             ReceivingFacilityName = "Salford";
             FacilityNumber = "1234";

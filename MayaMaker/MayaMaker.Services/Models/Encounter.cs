@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MayaMaker.Services.Models
 {
@@ -13,7 +11,7 @@ namespace MayaMaker.Services.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Patient Patient { get; set; }
-        public Hospital AssignedHospital { get; set; }
+        public Doctor AssignedDoctor { get; set; }
         public string EncounterClass { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }

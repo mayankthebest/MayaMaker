@@ -174,14 +174,14 @@ namespace MayaMaker.Services.Models
                     var rawData = allEncounterRawData[i].Split(',');
                     DateTime.TryParse(rawData[1], out DateTime startDate);
                     DateTime.TryParse(rawData[2], out DateTime endDate);
-                    Guid.TryParse(rawData[4], out Guid hospitalId);
+                    Guid.TryParse(rawData[4], out Guid doctorId);
                     Guid.TryParse(rawData[3], out Guid patientId);
                     var encounter = new Encounter
                     {
                         Id = Guid.Parse(rawData[0]),
                         Code = rawData[7],
                         Description = rawData[8],
-                        AssignedHospital = context.Hospitals.Where(x => x.Id == hospitalId).FirstOrDefault(),
+                        AssignedDoctor = context.Doctors.Where(x => x.AssignedHospital.Id == doctorId).FirstOrDefault(),
                         EncounterClass = rawData[6],
                         EndDate = endDate,
                         Patient = context.Patients.Where(x => x.Id == patientId).FirstOrDefault(),
