@@ -17,7 +17,7 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/MayaMaker/MayaMaker.Services/bin/Release/netcoreapp3.1/**'
+    SourceFolder: '$(Build.SourcesDirectory)/MayaMaker/MayaMaker.Services/bin/Release/netcoreapp3.1/'
     Contents: '**'
     TargetFolder: '$(build.artifactstagingdirectory)'
 - task: PublishBuildArtifacts@1
