@@ -31,6 +31,6 @@ steps:
     azureSubscription: 'SalfordConnection'
     appType: 'webAppLinux'
     WebAppName: 'mayamaker'
-    packageForLinux: '$(System.ArtifactsDirectory)/drop'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/drop'
     RuntimeStack: 'DOTNETCORE|3.1'
     StartupCommand: 'dotnet MayaMaker.Services.dll'
