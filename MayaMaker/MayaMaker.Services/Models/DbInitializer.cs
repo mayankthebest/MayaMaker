@@ -226,7 +226,7 @@ namespace MayaMaker.Services.Models
                 {
                     Name = "Patient Admit cancelled",
                     Description = "Patient Admit cancelled",
-                    MessageTypes = "A01,A011,A01,A03"
+                    MessageTypes = "A01,A11,A01,A03"
                 });
                 scenarios.Add(new Scenario
                 {

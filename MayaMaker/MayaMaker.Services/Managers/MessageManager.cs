@@ -57,6 +57,8 @@ namespace MayaMaker.Services.Managers
                     outputs.Add(parser.Encode(message));
                     interval++;
                 }
+
+                currentlyProcessing++;
             }
 
             return outputs;

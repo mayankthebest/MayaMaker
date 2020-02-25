@@ -166,10 +166,10 @@ namespace MayaMaker.Services.MessageFactory
             patientAddress.Country.Value = "USA";
         }
 
-        internal void CreatePv1Segment()
+        internal void CreatePv1Segment(string patientClass = null)
         {
             var pv1 = GetProperty("PV1") as PV1;
-            pv1.PatientClass.Value = Encounter.Code;
+            pv1.PatientClass.Value = string.IsNullOrEmpty(patientClass)? Encounter.Code : patientClass;
             var assignedPatientLocation = pv1.AssignedPatientLocation;
             assignedPatientLocation.Facility.NamespaceID.Value = Encounter.AssignedDoctor.AssignedHospital.Name;
             assignedPatientLocation.PointOfCare.Value = Encounter.AssignedDoctor.AssignedHospital.Address;

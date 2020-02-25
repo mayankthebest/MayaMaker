@@ -5,11 +5,19 @@ using System.Threading.Tasks;
 
 namespace MayaMaker.Services.MessageFactory
 {
-    internal class A15Builder : IBuildMessage
+    internal class A15Builder : BaseAdtMessageBuilder, IBuildMessage
     {
-        public Task<IMessage> BuildMessage(DateTime messageTime, Patient patient, Encounter encounter)
+        public async Task<IMessage> BuildMessage(DateTime messageTime, Patient patient, Encounter encounter)
         {
-            throw new System.NotImplementedException();
+            MessageTime = messageTime;
+            MessageType = MessageType.A15;
+            Patient = patient;
+            Encounter = encounter;
+            CreateMessageWithHeaderValues();
+            CreateEvnSegment();
+            CreatePidSegment();
+            CreatePv1Segment();
+            return Message;
         }
     }
 }
