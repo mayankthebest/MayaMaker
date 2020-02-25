@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MayaMaker.Services.Managers;
 using MayaMaker.Services.Writers;
@@ -20,19 +20,19 @@ namespace MayaMaker.Services.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<string> GetAll()
+        public async Task<List<string>> GetAll()
         {
             var messages = await _messageManager.GetAllAdtMessages();
             _messageWriter.WriteAllMessages(messages);
-            return string.Join(Environment.NewLine, messages);
+            return messages;
         }
 
         [HttpGet]
-        public async Task<string> Get()
+        public async Task<List<string>> Get()
         {
             var messages = await _messageManager.GetAdtMessagesForOneEncounter();
             _messageWriter.WriteAllMessages(messages);
-            return string.Join(Environment.NewLine, messages);
+            return messages;
         }
     }
 }

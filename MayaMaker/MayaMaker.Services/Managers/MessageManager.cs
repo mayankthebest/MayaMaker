@@ -32,7 +32,7 @@ namespace MayaMaker.Services.Managers
         {
             Random rand = new Random();
             var patientCount = _dbContext.Patients.Count();
-            var patient = _dbContext.Patients.Skip(rand.Next(0, patientCount - 2)).Take(1).First();
+            var patient = _dbContext.Patients.Include(x => x.Kins).Skip(rand.Next(0, patientCount - 2)).Take(1).First();
             return await GetParsedMessage(patient, _dbContext.Encounters.Where(x => x.Patient == patient).Count());
         }
 
@@ -44,7 +44,13 @@ namespace MayaMaker.Services.Managers
             int currentlyProcessing = 0;
             while (currentlyProcessing < noOfEncountersToProcess)
             {
+                currentlyProcessing++;
                 var encounters = GetConsecutiveEncounters(patient, currentlyProcessing);
+                if(encounters.Count < 2)
+                {
+                    continue;
+                }
+
                 var timeDiff = (encounters[1].StartDate - encounters[0].StartDate).Ticks;
                 var scenariosCount = _dbContext.Scenarios.Count();
                 var scenarioToExecute = _dbContext.Scenarios.Skip(rand.Next(0, scenariosCount - 2)).Take(1).First();
@@ -57,8 +63,6 @@ namespace MayaMaker.Services.Managers
                     outputs.Add(parser.Encode(message));
                     interval++;
                 }
-
-                currentlyProcessing++;
             }
 
             return outputs;
