@@ -25,3 +25,12 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'SalfordConnection'
+    appType: 'webAppLinux'
+    WebAppName: 'mayamaker'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/_mayankthebest.MayaMaker/drop'
+    RuntimeStack: 'DOTNETCORE|3.1'
+    StartupCommand: 'dotnet MayaMaker.Services.dll'
