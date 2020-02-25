@@ -31,6 +31,6 @@ steps:
     azureSubscription: 'SalfordConnection'
     appType: 'webAppLinux'
     WebAppName: 'mayamaker'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/_mayankthebest.MayaMaker/drop'
+    packageForLinux: '$(System.ArtifactsDirectory)/MayaMaker/drop'
     RuntimeStack: 'DOTNETCORE|3.1'
     StartupCommand: 'dotnet MayaMaker.Services.dll'
