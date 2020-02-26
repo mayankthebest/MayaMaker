@@ -15,10 +15,9 @@ variables:
 steps:
 - script: dotnet publish ./MayaMaker/MayaMaker.Services/MayaMaker.Services.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet publish $(buildConfiguration)'
-
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/MayaMaker/MayaMaker.Services/bin/Release/netcoreapp3.1/'
+    SourceFolder: '$(Build.SourcesDirectory)/MayaMaker/MayaMaker.Services/bin/Release/netcoreapp3.1/publish'
     Contents: '**'
     TargetFolder: '$(build.artifactstagingdirectory)'
 - task: PublishBuildArtifacts@1
