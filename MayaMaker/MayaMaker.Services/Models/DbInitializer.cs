@@ -99,8 +99,6 @@ namespace MayaMaker.Services.Models
                 {
                     context.PatientKins.Add(patientKin);
                 }
-
-                context.SaveChanges();
             }
 
             if (!context.Hospitals.Any())
@@ -129,8 +127,6 @@ namespace MayaMaker.Services.Models
                 {
                     context.Hospitals.Add(h);
                 }
-
-                context.SaveChanges();
             }
 
             if (!context.Doctors.Any())
@@ -161,8 +157,6 @@ namespace MayaMaker.Services.Models
                 {
                     context.Doctors.Add(p);
                 }
-
-                context.SaveChanges();
             }
 
             if (!context.Encounters.Any())
@@ -197,8 +191,6 @@ namespace MayaMaker.Services.Models
                 {
                     context.Encounters.Add(p);
                 }
-
-                context.SaveChanges();
             }
 
             if(!context.Scenarios.Any())
@@ -239,9 +231,9 @@ namespace MayaMaker.Services.Models
                 {
                     context.Scenarios.Add(s);
                 }
-
-                context.SaveChanges();
             }
+
+            context.SaveChanges();
         }
     }
 }
