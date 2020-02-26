@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home page";
+}
+@model List<string>
+
+    <div>
+        <input type="button" class="btn btn-info" value="Get life cycle for one encounter" onclick="location.href='@Url.Action("GetScenario", "Home")'" />
+        <input type="button" class="btn btn-info" value="Get patient's entire life encounters" onclick="location.href='@Url.Action("GetAllScenario", "Home")'" />
+        <br />
+        @if (Model != null)
+        {
+            @foreach (var message in Model)
+            {
+
+                var normalizedMessage = message.Replace("\r", "\r\n");
+                <pre>@normalizedMessage</pre>
+                <br />
+            }
+        }
+    </div>

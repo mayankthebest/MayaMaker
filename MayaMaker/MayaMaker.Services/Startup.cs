@@ -1,3 +1,4 @@
+using MayaMaker.Services.Controllers;
 using MayaMaker.Services.Managers;
 using MayaMaker.Services.MessageFactory;
 using MayaMaker.Services.Models;
@@ -30,6 +31,7 @@ namespace MayaMaker.Services
             services.AddTransient<IMessageWriter, MessageWriter>();
             services.AddControllers();
             services.AddMvc();
+            services.AddTransient<MessageMakerController, MessageMakerController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
