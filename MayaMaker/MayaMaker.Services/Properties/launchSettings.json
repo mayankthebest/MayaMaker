@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/messagemaker",
+      "launchUrl": "home",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "MayaMaker.Services": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/messagemaker",
+      "launchUrl": "home",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/messagemaker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/home",
       "publishAllPorts": true,
       "useSSL": true
     }

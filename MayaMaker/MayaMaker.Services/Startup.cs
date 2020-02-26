@@ -30,7 +30,6 @@ namespace MayaMaker.Services
             services.AddTransient<IMessageManager, MessageManager>();
             services.AddTransient<IMessageWriter, MessageWriter>();
             services.AddControllers();
-            services.AddMvc();
             services.AddTransient<MessageMakerController, MessageMakerController>();
         }
 
@@ -59,6 +58,7 @@ namespace MayaMaker.Services
             {
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
+                endpoints.MapFallbackToController("Index", "Home");
             });
         }
     }
