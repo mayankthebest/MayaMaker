@@ -29,10 +29,10 @@ namespace MayaMaker.Services.MessageFactory
         {
             FieldSeparator = "|";
             EncodingCharacters = "^~\\&";
-            SendingApplicationName = "MayaMaker";
-            SendingFacilityName = "MayaHospital";
-            ReceivingApplicationName = "DCC";
-            ReceivingFacilityName = "Salford";
+            SendingApplicationName = "MayaSender";
+            SendingFacilityName = "MayankHospital";
+            ReceivingApplicationName = "MayaReceiver";
+            ReceivingFacilityName = "KumarHospital";
             FacilityNumber = "1234";
             MessageTypeString = "ADT";
             Version = "2.3";
