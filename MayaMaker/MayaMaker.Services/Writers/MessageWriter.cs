@@ -12,7 +12,7 @@ namespace MayaMaker.Services.Writers
         /// <param name="messages">HL7 Messages to write</param>
         public void WriteAllMessages(List<string> messages)
         {
-            File.WriteAllText("output.txt", string.Join(Environment.NewLine, messages));
+            //TO DO: Add code to write to a central location
         }
     }
 }
