@@ -159,6 +159,12 @@ namespace MayaMaker.Services.MessageFactory
             patientName.FamilyName.Value = Patient.LastName;
             patientName.GivenName.Value = Patient.FirstName;
             pid.SetIDPatientID.Value = Patient.Id.ToString();
+            pid.Sex.Value = Patient.Gender;
+            pid.DateOfBirth.TimeOfAnEvent.Value = Patient.Birthdate.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+            pid.PatientDeathDateAndTime.TimeOfAnEvent.Value = Patient.Deathdate.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+            pid.MaritalStatus.Value = Patient.MaritalStatus;
+            pid.Race.Value = Patient.Race;
+            pid.SSNNumberPatient.Value = Patient.Ssn;
             var patientAddress = pid.GetPatientAddress(0);
             patientAddress.StreetAddress.Value = Patient.Address;
             patientAddress.City.Value = Patient.City;
