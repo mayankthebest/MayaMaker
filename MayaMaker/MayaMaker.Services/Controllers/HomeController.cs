@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MayaMaker.Services.Controllers
 {
     [Route("[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class HomeController : Controller
     {
         public List<string> Messages { get; set; }
@@ -20,6 +18,7 @@ namespace MayaMaker.Services.Controllers
         }
 
         // GET: MessageView
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
