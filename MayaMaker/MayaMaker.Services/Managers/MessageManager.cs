@@ -53,7 +53,7 @@ namespace MayaMaker.Services.Managers
 
                 var timeDiff = (encounters[1].StartDate - encounters[0].StartDate).Ticks;
                 var scenariosCount = _dbContext.Scenarios.Count();
-                var scenarioToExecute = _dbContext.Scenarios.Skip(rand.Next(0, scenariosCount - 2)).Take(1).First();
+                var scenarioToExecute = _dbContext.Scenarios.Skip(rand.Next(0, scenariosCount)).Take(1).First();
                 var messageTypes = scenarioToExecute.MessageTypes.Split(',');
                 int interval = 0;
                 foreach (var messageType in messageTypes)
