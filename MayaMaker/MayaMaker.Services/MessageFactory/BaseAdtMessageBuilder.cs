@@ -1,5 +1,6 @@
 ﻿using MayaMaker.Services.Models;
 using NHapi.Base.Model;
+using NHapi.Model.V23.Group;
 using NHapi.Model.V23.Message;
 using NHapi.Model.V23.Segment;
 using System;
@@ -175,7 +176,7 @@ namespace MayaMaker.Services.MessageFactory
         internal void CreatePv1Segment(string patientClass = null)
         {
             var pv1 = GetProperty("PV1") as PV1;
-            pv1.PatientClass.Value = string.IsNullOrEmpty(patientClass)? Encounter.Code : patientClass;
+            pv1.PatientClass.Value = string.IsNullOrEmpty(patientClass) ? Encounter.Code : patientClass;
             var assignedPatientLocation = pv1.AssignedPatientLocation;
             assignedPatientLocation.Facility.NamespaceID.Value = Encounter.AssignedDoctor.AssignedHospital.Name;
             assignedPatientLocation.PointOfCare.Value = Encounter.AssignedDoctor.AssignedHospital.Address;
@@ -218,6 +219,27 @@ namespace MayaMaker.Services.MessageFactory
             var obx = GetMethodWithSingleIntParameter("GetOBX", new object[] { 0 }) as OBX;
             obx.ObservationIdentifier.Identifier.Value = Encounter.Code;
             obx.ObservationIdentifier.Text.Value = Encounter.Description;
+        }
+
+        internal void CreateProcedureGroup()
+        {
+            var procGroup = GetMethodWithSingleIntParameter("GetPROCEDURE", new object[] { 0 }) as ADT_A04_PROCEDURE;
+            procGroup.PR1.ProcedureCode.Text.Value = Encounter.Code;
+            procGroup.PR1.ProcedureDateTime.TimeOfAnEvent.Value = MessageTime.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+            procGroup.PR1.ProcedureDescription.Value = Encounter.Description;
+            procGroup.PR1.ProcedurePriority.Value = "HIGH";
+            procGroup.PR1.GetSurgeon(0).DegreeEgMD.Value = Encounter.AssignedDoctor.Speciality;
+            procGroup.PR1.GetSurgeon(0).GivenName.Value = Encounter.AssignedDoctor.Name;
+            procGroup.PR1.GetSurgeon(0).IDNumber.Value = Encounter.AssignedDoctor.Id.ToString();
+            for (int i = 0; i < Patient.Kins.Count; i++)
+            {
+                var rol = procGroup.GetROL(i);
+                rol.Role.Text.Value = Patient.Kins[i].Role;
+                rol.RolePerson.GivenName.Value = Patient.Kins[i].FirstName;
+                rol.RolePerson.FamilyName.Value = Patient.Kins[i].LastName;
+                rol.RoleBeginDateTime.TimeOfAnEvent.Value = MessageTime.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                rol.RoleEndDateTime.TimeOfAnEvent.Value = MessageTime.AddHours(1).ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+            }
         }
 
         internal void CreatePd1Segment()

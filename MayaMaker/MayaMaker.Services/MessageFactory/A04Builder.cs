@@ -14,6 +14,7 @@ namespace MayaMaker.Services.MessageFactory
             Patient = patient;
             Encounter = encounter;
             CreateMessageWithHeaderValues();
+            CreateProcedureGroup();
             CreateEvnSegment();
             CreatePidSegment();
             CreatePv1Segment();
