@@ -29,6 +29,7 @@ namespace MayaMaker.Services
             services.AddDbContext<MayaMakerContext>(options => options.UseSqlite(Configuration.GetConnectionString("MayaMakerContext")));
             services.AddTransient<IMessageFactory, AdtMessageFactory>();
             services.AddTransient<IMessageManager, MessageManager>();
+            services.AddTransient<IScenarioManager, ScenarioManager>();
             services.AddTransient<IMessageWriter, MessageWriter>();
             services.AddControllers();
             services.AddTransient<MessageMakerController, MessageMakerController>();

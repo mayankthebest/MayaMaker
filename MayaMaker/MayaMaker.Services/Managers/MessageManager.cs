@@ -20,12 +20,12 @@ namespace MayaMaker.Services.Managers
             _messageFactory = messageFactory;
         }
 
-        public async Task<List<string>> GetAdtMessagesForOneEncounter()
+        public async Task<List<string>> GetAdtMessagesForOneEncounter(int scenarioId = 0)
         {
             Random rand = new Random();
             var patientCount = _dbContext.Patients.Count();
             var patient = _dbContext.Patients.Include(x => x.Kins).Skip(rand.Next(0, patientCount - 2)).Take(1).First();
-            return await GetParsedMessage(patient, 1);
+            return await GetParsedMessage(patient, 1, scenarioId);
         }
 
         public async Task<List<string>> GetAllAdtMessages()
@@ -36,7 +36,7 @@ namespace MayaMaker.Services.Managers
             return await GetParsedMessage(patient, _dbContext.Encounters.Where(x => x.Patient == patient).Count());
         }
 
-        private async Task<List<string>> GetParsedMessage(Patient patient, int noOfEncountersToProcess = 1)
+        private async Task<List<string>> GetParsedMessage(Patient patient, int noOfEncountersToProcess = 1, int scenarioId = 0)
         {
             List<string> outputs = new List<string>();
             PipeParser parser = new PipeParser();
@@ -52,16 +52,28 @@ namespace MayaMaker.Services.Managers
                 }
 
                 var timeDiff = (encounters[1].StartDate - encounters[0].StartDate).Ticks;
-                var scenariosCount = _dbContext.Scenarios.Count();
-                var scenarioToExecute = _dbContext.Scenarios.Skip(rand.Next(0, scenariosCount)).Take(1).First();
-                var messageTypes = scenarioToExecute.MessageTypes.Split(',');
-                int interval = 0;
-                foreach (var messageType in messageTypes)
+                Scenario scenarioToExecute = null;
+                if (scenarioId == 0)
                 {
-                    var parsedType = (MessageType)Enum.Parse(typeof(MessageType), messageType);
-                    var message = await _messageFactory.CreateMessage(parsedType, encounters[0].StartDate.AddTicks((timeDiff / messageTypes.Count()) * interval), patient, encounters[0]);
-                    outputs.Add(parser.Encode(message));
-                    interval++;
+                    var scenariosCount = _dbContext.Scenarios.Count();
+                    scenarioToExecute = _dbContext.Scenarios.Skip(rand.Next(0, scenariosCount)).Take(1).First();
+                }
+                else
+                {
+                    scenarioToExecute = _dbContext.Scenarios.FirstOrDefault(x => x.Id == scenarioId);
+                }
+
+                if (scenarioToExecute != null)
+                {
+                    var messageTypes = scenarioToExecute.MessageTypes.Split(',');
+                    int interval = 0;
+                    foreach (var messageType in messageTypes)
+                    {
+                        var parsedType = (MessageType)Enum.Parse(typeof(MessageType), messageType);
+                        var message = await _messageFactory.CreateMessage(parsedType, encounters[0].StartDate.AddTicks((timeDiff / messageTypes.Count()) * interval), patient, encounters[0]);
+                        outputs.Add(parser.Encode(message));
+                        interval++;
+                    }
                 }
             }
 
